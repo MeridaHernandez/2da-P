@@ -1,0 +1,169 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+//Merida Hernandez
+void mostrar(int tienda[][6],int tam);
+int suma(int tienda[][6],int tam);
+void agregar(int tienda[][6], int tam, int vendedor, int producto);
+void producto(int tienda[][6],int tam,int ven);
+int menuProductos();
+int menuVendedores();
+int main()
+{
+
+        int tienda[5][6]={0};
+        int op;
+        do
+        {
+            op=menuVendedores();
+            switch(op)
+            {
+                case 1:
+                {
+                    producto(tienda,5,op);
+                    break;
+                }
+                case 2:
+                {
+                    producto(tienda,5,op);
+                    break;
+                }
+                case 3:
+                {
+                    producto(tienda,5,op);
+                    break;
+                }
+                case 4:
+                {
+                    producto(tienda,5,op);
+                    break;
+                }
+                case 5:
+                {
+                    mostrar(tienda,5);
+                    break;
+                }
+            }
+        }while(op!=0);
+
+        return 0;
+}
+int menuVendedores()
+{
+	int vendedor;
+	cout<<"Los vendedores estan acomodados desde el primero al cuarto"<< endl;
+	cout << "1.- Vendedor 1" << endl;//primer vendedor
+	cout << "2.- Vendedor 2" << endl;//segundo vendedor
+	cout << "3.- Vendedor 3" << endl;//tercer vendedor
+	cout << "4.- Vendedor 4" << endl;//cuarto vendedor
+	cout << "5.- Mostrar la tabla" << endl;
+	cout << "0.- salir" << endl;
+	cin >> vendedor;
+	cout << endl;
+	return vendedor;
+}
+int menuProductos()
+{
+	int producto;
+	cout<<"Tambien estan acomodados del primero al quinto"<< endl;
+	cout << "1.- Producto 1" << endl;//producto 1
+	cout << "2.- Producto 2" << endl;//producto 2
+	cout << "3.- Producto 3" << endl;//producto 3
+	cout << "4.- Producto 4" << endl;//producto 4
+	cout << "5.- Producto 5" << endl;//producto 5
+	cout << "6.- Mostrar la tabla" << endl;
+	cout << "0.- salir" << endl;
+	cin >> producto;
+	cout << endl;
+	return producto;
+}
+void producto(int tienda[][6],int tam,int vendedor)
+{
+	int op;
+	do
+	{
+		op=menuProductos();
+		switch(op)
+		{
+			case 1:
+			{
+				agregar(tienda,tam,vendedor,op);
+				break;
+			}
+			case 2:
+			{
+				agregar(tienda,tam,vendedor,op);
+				break;
+			}
+			case 3:
+			{
+				agregar(tienda,tam,vendedor,op);
+				break;
+			}
+			case 4:
+			{
+				agregar(tienda,tam,vendedor,op);
+				break;
+			}
+			case 5:
+			{
+				agregar(tienda,tam,vendedor,op);
+				break;
+			}
+			case 6:
+			{
+				mostrar(tienda,5);
+				break;
+			}
+		}
+	}while(op!=0);
+}
+void agregar(int tienda[][6], int tam, int vendedor, int producto)
+{
+	int cosa;
+	cout << "Cantidad: " << endl;
+	cin >> cosa;
+	cout << endl;
+	tienda[vendedor-1][producto-1]+=cosa;
+}
+int suma(int tienda[][6],int tam)
+{
+	int num1=0, num2=0;
+	for(int c=0;c<tam-1;c++)
+	{
+		for(int r=0;r<5;r++)
+		{
+
+
+			num2+=tienda[c][r];//esto son los renglones
+			tienda[c][5]=num2;
+		}
+		num2=0;
+	}
+	for(int r=0;r<5;r++)
+	{
+		for(int c=0;c<tam-1;c++)
+		{
+			num1+=tienda[c][r];//estas las columnas
+			tienda[4][r]=num1;
+		}
+		num1=0;
+	}
+}
+void mostrar(int tienda[][6],int tam)
+{
+	suma(tienda,5);
+	for(int i=0;i<6;i++)
+		cout << "\t(" << i+1 << ")" ;
+	cout << endl;
+
+	for(int i=0;i<tam;i++)
+	{
+		cout << "(" << i+1 << ")=\t";
+		for(int j=0;j<6;j++)
+		{
+			cout << tienda[i][j] << "\t";
+		}
+		cout << endl;
+	}
+}
